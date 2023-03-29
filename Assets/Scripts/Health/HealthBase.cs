@@ -2,16 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBase : MonoBehaviour
 {
     public Action onKill;
 
-    public int startLife = 10;
+    public float startLife = 10;
     public bool destroyOnKill = false;
     public float delayToKill = 0f;
+    public Image uiHealthBarImage;
 
-    private int _currentLife;
+    public float _currentLife;
     private bool _isDead = false;
     [SerializeField] FlashColor _flashColor;
 
@@ -22,6 +24,13 @@ public class HealthBase : MonoBehaviour
         {
             _flashColor = GetComponent<FlashColor>();
         }
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        float fillAmount = _currentLife / startLife;
+        uiHealthBarImage.fillAmount = fillAmount;
     }
 
     private void Init()
@@ -44,6 +53,7 @@ public class HealthBase : MonoBehaviour
         {
             _flashColor.Flash();
         }
+        UpdateHealthBar() ;
     }
 
     private void Kill()
