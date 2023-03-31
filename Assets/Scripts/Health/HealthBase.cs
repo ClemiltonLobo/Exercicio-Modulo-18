@@ -8,7 +8,7 @@ public class HealthBase : MonoBehaviour
 {
     public Action onKill;
 
-    public float startLife = 10;
+    public float startLife;
     public bool destroyOnKill = false;
     public float delayToKill = 0f;
     public Image uiHealthBarImage;
@@ -27,10 +27,28 @@ public class HealthBase : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         float fillAmount = _currentLife / startLife;
         uiHealthBarImage.fillAmount = fillAmount;
+    }
+
+    public void Heal(float amount)
+    {
+        if (_currentLife + amount > startLife)
+        {
+            _currentLife = startLife;
+        }
+        else
+        {
+            _currentLife += amount;
+        }
+        UpdateHealthBar();
+
+        if (uiHealthBarImage.fillAmount == 1)
+        {
+            Debug.Log("Sua vida está cheia");
+        }
     }
 
     private void Init()

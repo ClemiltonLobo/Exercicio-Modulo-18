@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using Ebac.Core.Singleton;
 
@@ -8,6 +9,7 @@ public class ItemManager : Singleton<ItemManager>
 {
     public int coins;
     public TextMeshProUGUI uiTextMexhProCoins;
+    private float _recoverLife;
 
     private void Start()
     {
@@ -21,6 +23,15 @@ public class ItemManager : Singleton<ItemManager>
         UpdateUI();
     }
 
+    public void AddLife(float amount = 1f)
+    {
+        HealthBase playerHealth = FindObjectOfType<HealthBase>();
+        if (playerHealth != null)
+        {
+            playerHealth.Heal(amount);
+        }
+    }
+
     public void AddCoins(int amount = 1)
     {
         coins += amount;
@@ -29,5 +40,9 @@ public class ItemManager : Singleton<ItemManager>
     private void UpdateUI()
     {
         uiTextMexhProCoins.text = coins.ToString();
+    }
+    public float GetRecoverLifeAmount()
+    {
+        return _recoverLife;
     }
 }
