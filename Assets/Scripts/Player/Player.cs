@@ -10,16 +10,25 @@ public class Player : MonoBehaviour
     
     [Header("Speed Setup")]
     public Vector2 friction= new Vector2(.1f, 0);    
-    public float speedRun;
+    /*public float speedRun;
     public float speed;
-    public float forceJump = 2;
+    public float forceJump = 2;*/
+    public SOFloat soSpeedRun;
+    public SOFloat soSpeed;
+    public SOFloat soForceJump;
 
     [Header("Animation Setup")]
-    public float jumpScaleY = 0.7f;
+    /*public float jumpScaleY = 0.7f;
     public float jumpScaleX = 1.5f;
     public float squatScaleX = 1.5f;
     public float squatScaleY = 0.7f;
-    public float animatioDuration = .3f;
+    public float animatioDuration = .3f;*/
+    public SOFloat soJumpScaleY;
+    public SOFloat soJumpScaleX;
+    public SOFloat soSquatScaleX;
+    public SOFloat soSquatScaleY;
+    public SOFloat soAnimatioDuration;
+
     public Ease ease = Ease.OutBack;
 
     [Header("Animation Player")]
@@ -57,12 +66,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            _currentSpeed = speedRun;
+            _currentSpeed = soSpeedRun.value;
             animator.speed = 2;
         }
         else
         {
-            _currentSpeed = speed;
+            _currentSpeed = soSpeed.value;
             animator.speed = 1;
         }
 
@@ -104,7 +113,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            MyRigidbody2D.velocity = Vector2.up * forceJump;
+            MyRigidbody2D.velocity = Vector2.up * soForceJump.value;
             MyRigidbody2D.transform.localScale = Vector2.one;
 
             DOTween.Kill(MyRigidbody2D.transform);
@@ -116,14 +125,14 @@ public class Player : MonoBehaviour
 
     private void HandleScaleJump()
     {
-        MyRigidbody2D.transform.DOScaleY(jumpScaleY, animatioDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        MyRigidbody2D.transform.DOScaleX(jumpScaleX, animatioDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        MyRigidbody2D.transform.DOScaleY(soJumpScaleY.value, soAnimatioDuration.value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        MyRigidbody2D.transform.DOScaleX(soJumpScaleX.value, soAnimatioDuration.value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     }
 
     private void HandleScaleSquat()
     {
-        MyRigidbody2D.transform.DOScaleY(squatScaleY, animatioDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        MyRigidbody2D.transform.DOScaleX(squatScaleX, animatioDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        MyRigidbody2D.transform.DOScaleY(soSquatScaleY.value, soAnimatioDuration.value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        MyRigidbody2D.transform.DOScaleX(soSquatScaleX.value, soAnimatioDuration.value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     }
 
     public void DestroyMe()
