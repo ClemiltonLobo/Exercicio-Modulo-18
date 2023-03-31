@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
 
     private void OnPlayerKill()
     {
-        healthBase.onKill -= OnPlayerKill;
+        if (healthBase != null)
+            healthBase.onKill -= OnPlayerKill;
         animator.SetTrigger(triggerDeath);
     }
 

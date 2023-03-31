@@ -7,7 +7,7 @@ using Ebac.Core.Singleton;
 
 public class ItemManager : Singleton<ItemManager>
 {
-    public int coins;
+    public SOInt coins;
     public TextMeshProUGUI uiTextMexhProCoins;
     private float _recoverLife;
 
@@ -19,7 +19,7 @@ public class ItemManager : Singleton<ItemManager>
 
     private void Reset()
     {
-        coins = 0;
+        coins.value = 0;
         UpdateUI();
     }
 
@@ -34,12 +34,13 @@ public class ItemManager : Singleton<ItemManager>
 
     public void AddCoins(int amount = 1)
     {
-        coins += amount;
+        coins.value += amount;
         UpdateUI();
     }
     private void UpdateUI()
     {
-        uiTextMexhProCoins.text = coins.ToString();
+        //uiTextMexhProCoins.text = coins.ToString();
+        //UIInGameManager.UpdateTextCoins(coins.value.ToString());
     }
     public float GetRecoverLifeAmount()
     {
