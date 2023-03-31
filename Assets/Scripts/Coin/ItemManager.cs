@@ -9,7 +9,7 @@ public class ItemManager : Singleton<ItemManager>
 {
     public SOInt coins;
     public TextMeshProUGUI uiTextMexhProCoins;
-    private float _recoverLife;
+    public SOFloat _recoverLife;
 
     private void Start()
     {
@@ -44,6 +44,6 @@ public class ItemManager : Singleton<ItemManager>
     }
     public float GetRecoverLifeAmount()
     {
-        return _recoverLife;
+        return _recoverLife.value;
     }
 }

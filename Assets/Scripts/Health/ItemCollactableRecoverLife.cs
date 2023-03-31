@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using Ebac.Core.Singleton;
 
-public class ItemCollactableRecoverLife : ItemCollactableBase
+public class ItemCollactableRecoverLife :ItemCollactableBase
 {
-    public float recoverAmount = 1f;
+    public SOFloat recoverAmount;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +16,7 @@ public class ItemCollactableRecoverLife : ItemCollactableBase
         {
             if (other.CompareTag("Player"))
             {
-                health.Heal(recoverAmount);
+                health.Heal(recoverAmount.value);
                 Debug.Log("Você coletou uma cura");
                 Destroy(gameObject);
             }

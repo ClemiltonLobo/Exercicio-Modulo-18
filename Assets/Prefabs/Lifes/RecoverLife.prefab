@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compareTag: Player
-  recoverAmount: 1
+  recoverAmount: {fileID: 11400000, guid: e7a33f7c4d16a9544b883694a8d6340f, type: 2}
 --- !u!58 &3020890238509025822
 CircleCollider2D:
   m_ObjectHideFlags: 0
