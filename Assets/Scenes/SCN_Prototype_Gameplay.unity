@@ -23953,7 +23953,7 @@ MonoBehaviour:
   MyRigidbody2D: {fileID: 1449572939}
   healthBase: {fileID: 1449572937}
   playerTransform: {fileID: 1449572936}
-  soPlayerSetup: {fileID: 11400000, guid: 127a999f2b5c948419cafc7ed72ee2b6, type: 2}
+  soPlayerSetup: {fileID: 11400000, guid: 14d899778d3ff2648a59fa6d4368306a, type: 2}
 --- !u!50 &1449572939
 Rigidbody2D:
   serializedVersion: 4
