@@ -7,15 +7,17 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D MyRigidbody2D;
     public HealthBase healthBase;
+    public Transform playerTransform;
 
     [Header("Setup")]
     public SOPlayerSetup soPlayerSetup;
 
-    public Animator animator;
+    //public Animator animator;
 
     private float _currentSpeed;
     //private bool _isRunning = false;
 
+    private Animator _currentPlayer;
 
     private void Awake()
     {
@@ -23,13 +25,14 @@ public class Player : MonoBehaviour
         {
             healthBase.onKill += OnPlayerKill;
         }
+        _currentPlayer = Instantiate(soPlayerSetup.player, transform);
     }
 
     private void OnPlayerKill()
     {
         if (healthBase != null)
             healthBase.onKill -= OnPlayerKill;
-        animator.SetTrigger(soPlayerSetup.triggerDeath);
+        _currentPlayer.SetTrigger(soPlayerSetup.triggerDeath);
     }
 
     public void Update()
@@ -43,12 +46,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             _currentSpeed =soPlayerSetup.speedRun;
-            animator.speed = 2;
+            _currentPlayer.speed = 2;
         }
         else
         {
             _currentSpeed = soPlayerSetup.speedRun;
-            animator.speed = 1;
+            _currentPlayer.speed = 1;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -58,7 +61,7 @@ public class Player : MonoBehaviour
             {
                 MyRigidbody2D.transform.DOScaleX(-1,soPlayerSetup.playerSwipeDuration);
             }
-            animator.SetBool(soPlayerSetup.boolRun, true);
+            _currentPlayer.SetBool(soPlayerSetup.boolRun, true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {            
@@ -67,11 +70,11 @@ public class Player : MonoBehaviour
             {
                 MyRigidbody2D.transform.DOScaleX(1, soPlayerSetup.playerSwipeDuration);
             }
-            animator.SetBool(soPlayerSetup.boolRun, true);
+            _currentPlayer.SetBool(soPlayerSetup.boolRun, true);
         }
         else
         {
-            animator.SetBool(soPlayerSetup.boolRun, false);
+            _currentPlayer.SetBool(soPlayerSetup.boolRun, false);
         }
 
 

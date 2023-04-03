@@ -11,6 +11,15 @@ public class GunBase : MonoBehaviour
 
     private Coroutine _currentCoroutine;
 
+    private void Awake()
+    {
+        // Busca a referência para o player
+        var player = GameObject.FindGameObjectWithTag("Player");
+
+        // Atribui a referência do transform do player à variável playerSideReference
+        playerSideReference = player.GetComponent<Player>().playerTransform;
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.S))

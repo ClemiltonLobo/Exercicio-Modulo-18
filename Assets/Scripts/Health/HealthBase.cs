@@ -20,11 +20,19 @@ public class HealthBase : MonoBehaviour
     private void Awake()
     {
         Init();
-        if(_flashColor == null)
+        if (_flashColor == null)
         {
             _flashColor = GetComponent<FlashColor>();
         }
         UpdateHealthBar();
+        // Busca a referência para o player
+        var player = GameObject.Find("PlayerObjectName");
+
+        // Obtém o componente HealthBase do player
+        var playerHealth = player.GetComponent<HealthBase>();
+
+        // Chama o método Heal() do componente HealthBase para curar o player
+        playerHealth.Heal(10f);
     }
 
     public void UpdateHealthBar()
@@ -47,7 +55,7 @@ public class HealthBase : MonoBehaviour
 
         if (uiHealthBarImage.fillAmount == 1)
         {
-            Debug.Log("Sua vida está cheia");
+
         }
     }
 
@@ -67,11 +75,11 @@ public class HealthBase : MonoBehaviour
             Kill();
         }
 
-        if(_flashColor != null)
+        if (_flashColor != null)
         {
             _flashColor.Flash();
         }
-        UpdateHealthBar() ;
+        UpdateHealthBar();
     }
 
     private void Kill()
@@ -86,3 +94,4 @@ public class HealthBase : MonoBehaviour
         onKill?.Invoke();
     }
 }
+
