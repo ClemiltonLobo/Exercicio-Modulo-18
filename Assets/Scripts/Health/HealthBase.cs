@@ -25,14 +25,6 @@ public class HealthBase : MonoBehaviour
             _flashColor = GetComponent<FlashColor>();
         }
         UpdateHealthBar();
-        // Busca a referência para o player
-        var player = GameObject.Find("PlayerObjectName");
-
-        // Obtém o componente HealthBase do player
-        var playerHealth = player.GetComponent<HealthBase>();
-
-        // Chama o método Heal() do componente HealthBase para curar o player
-        playerHealth.Heal(10f);
     }
 
     public void UpdateHealthBar()
@@ -94,4 +86,3 @@ public class HealthBase : MonoBehaviour
         onKill?.Invoke();
     }
 }
-

@@ -6,6 +6,11 @@ public class PlayerDestroyHelper : MonoBehaviour
 {
     public Player player;
 
+    void Start()
+    {
+        player = FindObjectOfType<Player>();
+    }
+
     public void KillPlayer()
     {
         player.DestroyMe();
