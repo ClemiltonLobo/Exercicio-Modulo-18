@@ -25,7 +25,7 @@ public class EnemyPatrol : MonoBehaviour
             }
             else
             {
-                transform.eulerAngles = new Vector3(0,100,0);
+                transform.eulerAngles = new Vector3(0,180,0);
                 isRight = true;
             }
         }
